@@ -1,0 +1,21 @@
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/data_db
+    username: root
+    password: 12345678
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        format_sql: true
+    defer-datasource-initialization: true
+
+
+
+jwt:
+  secret:
+    key: aaaaaasdda1sa23f123sda1f23as1f3as1f5sda53fsad5f453sd4f35as4f53f5sf13s1f313s13f1asfa
