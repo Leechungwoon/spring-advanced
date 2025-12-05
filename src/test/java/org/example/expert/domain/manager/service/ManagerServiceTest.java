@@ -27,7 +27,7 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
 
 @ExtendWith(MockitoExtension.class)
-class ManagerServiceTest {
+class  ManagerServiceTest {
 
     @Mock
     private ManagerRepository managerRepository;
@@ -46,7 +46,7 @@ class ManagerServiceTest {
 
         // when & then
         InvalidRequestException exception = assertThrows(InvalidRequestException.class, () -> managerService.getManagers(todoId));
-        assertEquals("Manager not found", exception.getMessage());
+        assertEquals("Todo not found", exception.getMessage()); //Manager -> Todo not found 변경
     }
 
     @Test
@@ -64,11 +64,11 @@ class ManagerServiceTest {
         given(todoRepository.findById(todoId)).willReturn(Optional.of(todo));
 
         // when & then
-        InvalidRequestException exception = assertThrows(InvalidRequestException.class, () ->
-            managerService.saveManager(authUser, todoId, managerSaveRequest)
-        );
+        InvalidRequestException exception = assertThrows(InvalidRequestException.class, () -> {
+            managerService.saveManager(authUser, todoId, managerSaveRequest);
+        });
 
-        assertEquals("일정을 생성한 유저만 담당자를 지정할 수 있습니다.", exception.getMessage());
+        assertEquals("등록하려고 하는 담당자 유저가 존재하지 않습니다.", exception.getMessage());
     }
 
     @Test // 테스트코드 샘플
